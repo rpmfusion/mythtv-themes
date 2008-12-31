@@ -17,7 +17,7 @@
 %define desktop_vendor  RPMFusion
 
 # SVN Revision number and branch ID
-%define _svnrev r19390
+%define _svnrev r19506
 %define branch trunk
 
 #
@@ -111,6 +111,9 @@ rm -rf %{buildroot}
 %{_datadir}/mythtv/themes/*
 
 %changelog
+* Wed Dec 31 2008 Jarod Wilson <jarod@wilsonet.com> 0.22-0.1.svn.r19506
+- Update to pre-0.22 svn trunk, rev 19506
+
 * Wed Dec 17 2008 Jarod Wilson <jarod@wilsonet.com> 0.22-0.1.svn.r19390
 - Build svn trunk themes to go with svn trunk mythtv, rev 19390
 - Drop glass-wide
