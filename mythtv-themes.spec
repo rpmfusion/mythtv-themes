@@ -112,7 +112,7 @@ rm -rf %{buildroot}
 
 %changelog
 * Mon Mar 02 2009 Jarod Wilson <jarod@wilsonet.com> 0.22-0.1.svn.r20089
-- Update to pre-0.22 svn trunk, rev 19811
+- Update to pre-0.22 svn trunk, rev 20089
 
 * Sat Jan 24 2009 Jarod Wilson <jarod@wilsonet.com> 0.22-0.1.svn.r19811
 - Update to pre-0.22 svn trunk, rev 19811
