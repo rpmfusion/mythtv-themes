@@ -17,7 +17,7 @@
 %define desktop_vendor  RPMFusion
 
 # SVN Revision number and branch ID
-%define _svnrev r20107
+%define _svnrev r20196
 %define branch trunk
 
 #
@@ -111,6 +111,9 @@ rm -rf %{buildroot}
 %{_datadir}/mythtv/themes/*
 
 %changelog
+* Thu Mar 12 2009 Jarod Wilson <jarod@wilsonet.com> 0.22-0.1.svn.r20196
+- Update to pre-0.22 svn trunk, rev 20196
+
 * Wed Mar 04 2009 Jarod Wilson <jarod@wilsonet.com> 0.22-0.1.svn.r20107
 - Update to pre-0.22 svn trunk, rev 20107
 
