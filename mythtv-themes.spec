@@ -32,7 +32,7 @@ License:    GPLv2
 # Version/Release info
 Version: 0.22
 %if "%{branch}" == "trunk"
-Release: 0.1.svn.%{_svnrev}%{?dist}
+Release: 0.2.svn.%{_svnrev}%{?dist}
 %else
 Release: 1%{?dist}
 %endif
@@ -111,6 +111,9 @@ rm -rf %{buildroot}
 %{_datadir}/mythtv/themes/*
 
 %changelog
+* Sun Mar 29 2009 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info> - 0.22-0.2.svn.r20196
+- rebuild for new F11 features
+
 * Thu Mar 12 2009 Jarod Wilson <jarod@wilsonet.com> 0.22-0.1.svn.r20196
 - Update to pre-0.22 svn trunk, rev 20196
 
