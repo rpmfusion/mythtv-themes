@@ -17,7 +17,7 @@
 %define desktop_vendor  RPMFusion
 
 # SVN Revision number and branch ID
-%define _svnrev r20196
+%define _svnrev r20317
 %define branch trunk
 
 #
@@ -111,6 +111,10 @@ rm -rf %{buildroot}
 %{_datadir}/mythtv/themes/*
 
 %changelog
+<<<<<<< mythtv-themes.spec
+* Tue Apr 07 2009 Jarod Wilson <jarod@wilsonet.com> 0.22-0.2.svn.r20317
+- Update to pre-0.22 svn trunk, rev 20317
+
 * Sun Mar 29 2009 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info> - 0.22-0.2.svn.r20196
 - rebuild for new F11 features
 
