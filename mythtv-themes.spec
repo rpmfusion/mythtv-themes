@@ -111,7 +111,6 @@ rm -rf %{buildroot}
 %{_datadir}/mythtv/themes/*
 
 %changelog
-<<<<<<< mythtv-themes.spec
 * Tue Apr 07 2009 Jarod Wilson <jarod@wilsonet.com> 0.22-0.2.svn.r20317
 - Update to pre-0.22 svn trunk, rev 20317
 
