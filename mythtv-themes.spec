@@ -32,7 +32,7 @@ License:    GPLv2
 # Version/Release info
 Version: 0.22
 %if "%{branch}" == "trunk"
-Release: 0.2.svn.%{_svnrev}%{?dist}
+Release: 0.3.svn.%{_svnrev}%{?dist}
 %else
 Release: 1%{?dist}
 %endif
@@ -47,6 +47,10 @@ Source1:        themes-%{version}.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildArch:      noarch
+
+# no mythtv in RPM Fusion's ppc64 repo, hence ExcludeArch this package on ppc64
+# to have broken deps:
+ExcludeArch:    ppc64
 
 ################################################################################
 
@@ -111,6 +115,9 @@ rm -rf %{buildroot}
 %{_datadir}/mythtv/themes/*
 
 %changelog
+* Tue May 05 2009 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info> - 0.22-0.3.svn.r20488
+- excludearch ppc64 to fix broken deps in RPM Fusions ppc64 repo
+
 * Mon May 04 2009 Jarod Wilson <jarod@wilsonet.com> 0.22-0.2.svn.r20488
 - Update to pre-0.22 svn trunk, rev 20488
 
