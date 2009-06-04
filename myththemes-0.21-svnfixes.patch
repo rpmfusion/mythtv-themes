@@ -1,0 +1,64 @@
+Index: myththemes/MythCenter/ui.xml
+===================================================================
+--- myththemes/MythCenter/ui.xml	(revision 16468)
++++ myththemes/MythCenter/ui.xml	(working copy)
+@@ -1872,7 +1872,7 @@
+         <fcnfont name="active" function="selected"></fcnfont>
+         <fcnfont name="enabled_state_0_font" function="enabled_state_0"></fcnfont>
+         <columnpadding>1</columnpadding>
+-        <column number="1" width="745" context="-1"></column>
++        <column number="1" width="715" context="-1"></column>
+         <items>8</items>
+         <image function="selectionbar" filename="rk-selectbar.png" location="-8,3"></image>
+         <image function="uparrow" filename="uparrow.png" location="755,15"></image>
+Index: myththemes/myththemes.pro
+===================================================================
+--- myththemes/myththemes.pro	(revision 16468)
++++ myththemes/myththemes.pro	(working copy)
+@@ -8,6 +8,7 @@
+ CONFIG -= moc qt
+ 
+ !macx:QMAKE_COPY_DIR = sh ./cpsvndir
++win32:QMAKE_INSTALL_DIR = sh ./cpsvndir
+ 
+ themes.path = $${PREFIX}/share/mythtv/themes/
+ themes.files = Iulius Iulius-OSD Minimalist-wide Titivillus Titivillus-OSD isthmus MythCenter MythCenter-wide Gray-OSD Retro Retro-OSD
+Index: myththemes/Retro/ui.xml
+===================================================================
+--- myththemes/Retro/ui.xml	(revision 16468)
++++ myththemes/Retro/ui.xml	(working copy)
+@@ -1872,7 +1872,7 @@
+         <fcnfont name="active" function="selected"></fcnfont>
+         <fcnfont name="enabled_state_0_font" function="enabled_state_0"></fcnfont>
+         <columnpadding>1</columnpadding>
+-        <column number="1" width="745" context="-1"></column>
++        <column number="1" width="715" context="-1"></column>
+         <items>8</items>
+         <image function="selectionbar" filename="rk-selectbar.png" location="-8,3"></image>
+         <image function="uparrow" filename="uparrow.png" location="755,15"></image>
+Index: myththemes/Titivillus/ui.xml
+===================================================================
+--- myththemes/Titivillus/ui.xml	(revision 16468)
++++ myththemes/Titivillus/ui.xml	(working copy)
+@@ -1619,7 +1619,7 @@
+         <fcnfont name="list-selected" function="selected"></fcnfont>
+         <fcnfont name="enabled_state_0_font" function="enabled_state_0"></fcnfont>
+         <columnpadding>1</columnpadding>
+-        <column number="1" width="745" context="-1"></column>
++        <column number="1" width="715" context="-1"></column>
+         <items>8</items>
+         <image function="selectionbar" filename="conflict/tit-cr-selectbar.png" location="-10,-5"></image>
+         <image function="uparrow" filename="shared/up_arrow.png" location="755,15"></image>
+Index: myththemes/Iulius/ui.xml
+===================================================================
+--- myththemes/Iulius/ui.xml	(revision 16468)
++++ myththemes/Iulius/ui.xml	(working copy)
+@@ -1869,7 +1869,7 @@
+         <fcnfont name="active" function="selected"></fcnfont>
+         <fcnfont name="enabled_state_0_font" function="enabled_state_0"></fcnfont>
+         <columnpadding>1</columnpadding>
+-        <column number="1" width="745" context="-1"></column>
++        <column number="1" width="715" context="-1"></column>
+         <items>8</items>
+         <image function="selectionbar" filename="rk-selectbar.png" location="-8,3"></image>
+         <image function="uparrow" filename="uparrow.png" location="755,15"></image>
