@@ -32,7 +32,7 @@ License:    GPLv2
 # Version/Release info
 Version: 0.22
 %if "%{branch}" == "trunk"
-Release: 0.3.svn.%{_svnrev}%{?dist}
+Release: 0.4.svn.%{_svnrev}%{?dist}
 %else
 Release: 1%{?dist}
 %endif
@@ -115,6 +115,9 @@ rm -rf %{buildroot}
 %{_datadir}/mythtv/themes/*
 
 %changelog
+* Fri Jun 05 2009 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info> - 0.22-0.4.svn.r20488
+- rebuilt
+
 * Tue May 05 2009 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info> - 0.22-0.3.svn.r20488
 - excludearch ppc64 to fix broken deps in RPM Fusions ppc64 repo
 
