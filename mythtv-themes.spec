@@ -43,8 +43,6 @@ Release: 1%{?dist}
 # Hopefully these will merge before 0.22 is released.
 Source0:        http://www.mythtv.org/mc/myththemes-%{version}.tar.bz2
 Source1:        themes-%{version}.tar.bz2
-# Very nice user-created theme using the new MythUI bits
-Source2:        http://www.fecitfacta.com/graphite.080409.tar.gz
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -79,7 +77,7 @@ This package contains additional themes for the mythtv user interface.
 ################################################################################
 
 %prep
-%setup -q -c -a 1 -a 2
+%setup -q -c -a 1
 
 ################################################################################
 
@@ -105,8 +103,6 @@ cd themes-%{version}
 make install INSTALL_ROOT=%{buildroot}
 cd ..
 
-cp -a Graphite %{buildroot}%{_datadir}/mythtv/themes/
-
 ################################################################################
 
 %clean
@@ -119,6 +115,10 @@ rm -rf %{buildroot}
 %{_datadir}/mythtv/themes/*
 
 %changelog
+* Sat Aug 29 2009 Jarod Wilson <jarod@wilsonet.com> - 0.22-0.4.svn.r21591
+- Update to pre-0.22 svn trunk, rev 21591
+- Graphite is now an official theme included in mythtv svn
+
 * Sat Aug 08 2009 Jarod Wilson <jarod@wilsonet.com> - 0.22-0.4.svn.r21179
 - Update to pre-0.22 svn trunk, rev 21179
 - Add Robert McNamara's excellent new Graphite theme
