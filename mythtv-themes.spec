@@ -17,7 +17,7 @@
 %define desktop_vendor  RPMFusion
 
 # SVN Revision number and branch ID
-%define _svnrev r21591
+%define _svnrev r21745
 %define branch trunk
 
 #
@@ -115,6 +115,12 @@ rm -rf %{buildroot}
 %{_datadir}/mythtv/themes/*
 
 %changelog
+* Wed Sep 07 2009 Jarod Wilson <jarod@wilsonet.com> - 0.22-0.4.svn.r21745
+- Update to pre-0.22 svn trunk, rev 21745
+
+* Sun Sep 06 2009 Jarod Wilson <jarod@wilsonet.com> - 0.22-0.4.svn.r21685
+- Update to pre-0.22 svn trunk, rev 21685
+
 * Sat Aug 29 2009 Jarod Wilson <jarod@wilsonet.com> - 0.22-0.4.svn.r21591
 - Update to pre-0.22 svn trunk, rev 21591
 - Graphite is now an official theme included in mythtv svn
