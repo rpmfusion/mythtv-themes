@@ -17,7 +17,7 @@
 %define desktop_vendor  RPMFusion
 
 # SVN Revision number and branch ID
-%define _svnrev r21745
+%define _svnrev r21778
 %define branch trunk
 
 #
@@ -41,16 +41,14 @@ Release: 1%{?dist}
 
 # Tarballs created from svn "themes" and "myththemes" directories
 # Hopefully these will merge before 0.22 is released.
-Source0:        http://www.mythtv.org/mc/myththemes-%{version}.tar.bz2
+#Source0:        http://www.mythtv.org/mc/myththemes-%{version}.tar.bz2
+Source0:        myththemes-%{version}.tar.bz2
 Source1:        themes-%{version}.tar.bz2
+Source2:        oldthemes-%{version}.tar.bz2
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildArch:      noarch
-
-# no mythtv in RPM Fusion's ppc64 repo, hence ExcludeArch this package on ppc64
-# to have broken deps:
-ExcludeArch:    ppc64
 
 ################################################################################
 
@@ -77,7 +75,7 @@ This package contains additional themes for the mythtv user interface.
 ################################################################################
 
 %prep
-%setup -q -c -a 1
+%setup -q -c -a 1 -a 2
 
 ################################################################################
 
@@ -87,6 +85,10 @@ cd myththemes-%{version}
 cd ..
 
 cd themes-%{version}
+%configure
+cd ..
+
+cd oldthemes-%{version}
 %configure
 cd ..
 
@@ -103,6 +105,10 @@ cd themes-%{version}
 make install INSTALL_ROOT=%{buildroot}
 cd ..
 
+cd oldthemes-%{version}
+make install INSTALL_ROOT=%{buildroot}
+cd ..
+
 ################################################################################
 
 %clean
@@ -115,6 +121,10 @@ rm -rf %{buildroot}
 %{_datadir}/mythtv/themes/*
 
 %changelog
+* Fri Sep 11 2009 Jarod Wilson <jarod@wilsonet.com> - 0.22-0.4.svn.r21778
+- Update to pre-0.22 svn trunk, rev 21778
+- Add back old themes not fully updated for 0.22 yet
+
 * Wed Sep 07 2009 Jarod Wilson <jarod@wilsonet.com> - 0.22-0.4.svn.r21745
 - Update to pre-0.22 svn trunk, rev 21745
 
