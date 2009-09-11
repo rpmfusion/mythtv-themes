@@ -32,19 +32,20 @@ License:    GPLv2
 # Version/Release info
 Version: 0.22
 %if "%{branch}" == "trunk"
-Release: 0.4.svn.%{_svnrev}%{?dist}
+Release: 0.5.svn.%{_svnrev}%{?dist}
 %else
 Release: 1%{?dist}
 %endif
 
 ################################################################################
 
-# Tarballs created from svn "themes" and "myththemes" directories
-# Hopefully these will merge before 0.22 is released.
-#Source0:        http://www.mythtv.org/mc/myththemes-%{version}.tar.bz2
-Source0:        myththemes-%{version}.tar.bz2
-Source1:        themes-%{version}.tar.bz2
-Source2:        oldthemes-%{version}.tar.bz2
+# Tarballs created from svn "themes" and "oldthemes" directories, should be
+# a formal tarball after release
+#Source0:        http://www.mythtv.org/mc/mythtv-themes-%{version}.tar.bz2
+Source0:        themes-%{version}.tar.bz2
+# The oldthemes bits haven't been updated for 0.22's UI changes, but still
+# at least sort of work...
+Source1:        oldthemes-%{version}.tar.bz2
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -75,15 +76,11 @@ This package contains additional themes for the mythtv user interface.
 ################################################################################
 
 %prep
-%setup -q -c -a 1 -a 2
+%setup -q -c -a 1
 
 ################################################################################
 
 %build
-cd myththemes-%{version}
-%configure
-cd ..
-
 cd themes-%{version}
 %configure
 cd ..
@@ -96,10 +93,6 @@ cd ..
 
 %install
 rm -rf %{buildroot}
-
-cd myththemes-%{version}
-make install INSTALL_ROOT=%{buildroot}
-cd ..
 
 cd themes-%{version}
 make install INSTALL_ROOT=%{buildroot}
@@ -121,6 +114,9 @@ rm -rf %{buildroot}
 %{_datadir}/mythtv/themes/*
 
 %changelog
+* Fri Sep 11 2009 Jarod Wilson <jarod@wilsonet.com> - 0.22-0.5.svn.r21778
+- The myththemes tarball is actually what become oldthemes. Oops.
+
 * Fri Sep 11 2009 Jarod Wilson <jarod@wilsonet.com> - 0.22-0.4.svn.r21778
 - Update to pre-0.22 svn trunk, rev 21778
 - Add back old themes not fully updated for 0.22 yet
