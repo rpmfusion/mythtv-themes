@@ -17,7 +17,7 @@
 %define desktop_vendor  RPMFusion
 
 # SVN Revision number and branch ID
-%define _svnrev r21778
+%define _svnrev r22366
 %define branch trunk
 
 #
@@ -39,13 +39,13 @@ Release: 1%{?dist}
 
 ################################################################################
 
-# Tarballs created from svn "themes" and "oldthemes" directories, should be
-# a formal tarball after release
+# Tarballs created from svn directories, should be formal tarballs after release
 #Source0:        http://www.mythtv.org/mc/mythtv-themes-%{version}.tar.bz2
 Source0:        themes-%{version}.tar.bz2
+Source1:        myththemes-%{version}.tar.bz2
 # The oldthemes bits haven't been updated for 0.22's UI changes, but still
 # at least sort of work...
-Source1:        oldthemes-%{version}.tar.bz2
+Source2:        oldthemes-%{version}.tar.bz2
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -76,12 +76,16 @@ This package contains additional themes for the mythtv user interface.
 ################################################################################
 
 %prep
-%setup -q -c -a 1
+%setup -q -c -a 1 -a 2
 
 ################################################################################
 
 %build
 cd themes-%{version}
+%configure
+cd ..
+
+cd myththemes-%{version}
 %configure
 cd ..
 
@@ -95,6 +99,10 @@ cd ..
 rm -rf %{buildroot}
 
 cd themes-%{version}
+make install INSTALL_ROOT=%{buildroot}
+cd ..
+
+cd myththemes-%{version}
 make install INSTALL_ROOT=%{buildroot}
 cd ..
 
@@ -114,6 +122,13 @@ rm -rf %{buildroot}
 %{_datadir}/mythtv/themes/*
 
 %changelog
+* Sun Oct 11 2009 Jarod Wilson <jarod@wilsonet.com> - 0.22-0.5.svn.r22366
+- Update to pre-0.22 svn trunk, rev 22366
+- Add back in new incarnation myththemes
+
+* Wed Sep 16 2009 Jarod Wilson <jarod@wilsonet.com> - 0.22-0.5.svn.r21902
+- Update to pre-0.22 svn trunk, rev 21902
+
 * Fri Sep 11 2009 Jarod Wilson <jarod@wilsonet.com> - 0.22-0.5.svn.r21778
 - The myththemes tarball is actually what become oldthemes. Oops.
 
@@ -121,7 +136,7 @@ rm -rf %{buildroot}
 - Update to pre-0.22 svn trunk, rev 21778
 - Add back old themes not fully updated for 0.22 yet
 
-* Wed Sep 07 2009 Jarod Wilson <jarod@wilsonet.com> - 0.22-0.4.svn.r21745
+* Wed Sep 09 2009 Jarod Wilson <jarod@wilsonet.com> - 0.22-0.4.svn.r21745
 - Update to pre-0.22 svn trunk, rev 21745
 
 * Sun Sep 06 2009 Jarod Wilson <jarod@wilsonet.com> - 0.22-0.4.svn.r21685
