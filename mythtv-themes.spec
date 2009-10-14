@@ -17,7 +17,7 @@
 %define desktop_vendor  RPMFusion
 
 # SVN Revision number and branch ID
-%define _svnrev r20488
+%define _svnrev r22457
 %define branch trunk
 
 #
@@ -32,25 +32,21 @@ License:    GPLv2
 # Version/Release info
 Version: 0.22
 %if "%{branch}" == "trunk"
-Release: 0.4.svn.%{_svnrev}%{?dist}
+Release: 0.6.rc1%{?dist}
+#Release: 0.5.svn.%{_svnrev}%{?dist}
 %else
 Release: 1%{?dist}
 %endif
 
 ################################################################################
 
-# Tarballs created from svn "themes" and "myththemes" directories
-# Hopefully these will merge before 0.22 is released.
-Source0:        http://www.mythtv.org/mc/myththemes-%{version}.tar.bz2
-Source1:        themes-%{version}.tar.bz2
+# Tarballs created from svn directories, should be formal tarballs after release
+#Source0:        http://www.mythtv.org/mc/mythtv-themes-%{version}.tar.bz2
+Source0:        myththemes-%{version}.tar.bz2
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildArch:      noarch
-
-# no mythtv in RPM Fusion's ppc64 repo, hence ExcludeArch this package on ppc64
-# to have broken deps:
-ExcludeArch:    ppc64
 
 ################################################################################
 
@@ -77,16 +73,12 @@ This package contains additional themes for the mythtv user interface.
 ################################################################################
 
 %prep
-%setup -q -c -a 1
+%setup -q -c
 
 ################################################################################
 
 %build
 cd myththemes-%{version}
-%configure
-cd ..
-
-cd themes-%{version}
 %configure
 cd ..
 
@@ -96,10 +88,6 @@ cd ..
 rm -rf %{buildroot}
 
 cd myththemes-%{version}
-make install INSTALL_ROOT=%{buildroot}
-cd ..
-
-cd themes-%{version}
 make install INSTALL_ROOT=%{buildroot}
 cd ..
 
@@ -115,6 +103,39 @@ rm -rf %{buildroot}
 %{_datadir}/mythtv/themes/*
 
 %changelog
+* Wed Oct 14 2009 Jarod Wilson <jarod@wilsonet.com> - 0.22-0.6.rc1
+- Update to 0.22-rc1
+- Drop oldthemes and unofficial themes at upstream's request, after
+  verifying we'll gracefully fall back to a stock theme now
+
+* Sun Oct 11 2009 Jarod Wilson <jarod@wilsonet.com> - 0.22-0.5.svn.r22366
+- Update to pre-0.22 svn trunk, rev 22366
+- Add back in new incarnation myththemes
+
+* Wed Sep 16 2009 Jarod Wilson <jarod@wilsonet.com> - 0.22-0.5.svn.r21902
+- Update to pre-0.22 svn trunk, rev 21902
+
+* Fri Sep 11 2009 Jarod Wilson <jarod@wilsonet.com> - 0.22-0.5.svn.r21778
+- The myththemes tarball is actually what become oldthemes. Oops.
+
+* Fri Sep 11 2009 Jarod Wilson <jarod@wilsonet.com> - 0.22-0.4.svn.r21778
+- Update to pre-0.22 svn trunk, rev 21778
+- Add back old themes not fully updated for 0.22 yet
+
+* Wed Sep 09 2009 Jarod Wilson <jarod@wilsonet.com> - 0.22-0.4.svn.r21745
+- Update to pre-0.22 svn trunk, rev 21745
+
+* Sun Sep 06 2009 Jarod Wilson <jarod@wilsonet.com> - 0.22-0.4.svn.r21685
+- Update to pre-0.22 svn trunk, rev 21685
+
+* Sat Aug 29 2009 Jarod Wilson <jarod@wilsonet.com> - 0.22-0.4.svn.r21591
+- Update to pre-0.22 svn trunk, rev 21591
+- Graphite is now an official theme included in mythtv svn
+
+* Sat Aug 08 2009 Jarod Wilson <jarod@wilsonet.com> - 0.22-0.4.svn.r21179
+- Update to pre-0.22 svn trunk, rev 21179
+- Add Robert McNamara's excellent new Graphite theme
+
 * Fri Jun 05 2009 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info> - 0.22-0.4.svn.r20488
 - rebuilt
 
