@@ -17,7 +17,7 @@
 %define desktop_vendor  RPMFusion
 
 # SVN Revision number and branch ID
-%define _svnrev r22366
+%define _svnrev r22457
 %define branch trunk
 
 #
@@ -32,7 +32,8 @@ License:    GPLv2
 # Version/Release info
 Version: 0.22
 %if "%{branch}" == "trunk"
-Release: 0.5.svn.%{_svnrev}%{?dist}
+Release: 0.6.rc1%{?dist}
+#Release: 0.5.svn.%{_svnrev}%{?dist}
 %else
 Release: 1%{?dist}
 %endif
@@ -41,11 +42,7 @@ Release: 1%{?dist}
 
 # Tarballs created from svn directories, should be formal tarballs after release
 #Source0:        http://www.mythtv.org/mc/mythtv-themes-%{version}.tar.bz2
-Source0:        themes-%{version}.tar.bz2
-Source1:        myththemes-%{version}.tar.bz2
-# The oldthemes bits haven't been updated for 0.22's UI changes, but still
-# at least sort of work...
-Source2:        oldthemes-%{version}.tar.bz2
+Source0:        myththemes-%{version}.tar.bz2
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -76,20 +73,12 @@ This package contains additional themes for the mythtv user interface.
 ################################################################################
 
 %prep
-%setup -q -c -a 1 -a 2
+%setup -q -c
 
 ################################################################################
 
 %build
-cd themes-%{version}
-%configure
-cd ..
-
 cd myththemes-%{version}
-%configure
-cd ..
-
-cd oldthemes-%{version}
 %configure
 cd ..
 
@@ -98,15 +87,7 @@ cd ..
 %install
 rm -rf %{buildroot}
 
-cd themes-%{version}
-make install INSTALL_ROOT=%{buildroot}
-cd ..
-
 cd myththemes-%{version}
-make install INSTALL_ROOT=%{buildroot}
-cd ..
-
-cd oldthemes-%{version}
 make install INSTALL_ROOT=%{buildroot}
 cd ..
 
@@ -122,6 +103,11 @@ rm -rf %{buildroot}
 %{_datadir}/mythtv/themes/*
 
 %changelog
+* Wed Oct 14 2009 Jarod Wilson <jarod@wilsonet.com> - 0.22-0.6.rc1
+- Update to 0.22-rc1
+- Drop oldthemes and unofficial themes at upstream's request, after
+  verifying we'll gracefully fall back to a stock theme now
+
 * Sun Oct 11 2009 Jarod Wilson <jarod@wilsonet.com> - 0.22-0.5.svn.r22366
 - Update to pre-0.22 svn trunk, rev 22366
 - Add back in new incarnation myththemes
