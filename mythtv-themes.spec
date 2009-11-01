@@ -17,7 +17,7 @@
 %define desktop_vendor  RPMFusion
 
 # SVN Revision number and branch ID
-%define _svnrev r22457
+%define _svnrev r22680
 %define branch trunk
 
 #
@@ -32,7 +32,7 @@ License:    GPLv2
 # Version/Release info
 Version: 0.22
 %if "%{branch}" == "trunk"
-Release: 0.6.rc1%{?dist}
+Release: 0.7.rc2%{?dist}
 #Release: 0.5.svn.%{_svnrev}%{?dist}
 %else
 Release: 1%{?dist}
@@ -103,6 +103,9 @@ rm -rf %{buildroot}
 %{_datadir}/mythtv/themes/*
 
 %changelog
+* Sat Oct 31 2009 Jarod Wilson <jarod@wilsonet.com> 0.22-0.9.rc2
+- Update to 0.22-rc2
+
 * Wed Oct 14 2009 Jarod Wilson <jarod@wilsonet.com> - 0.22-0.6.rc1
 - Update to 0.22-rc1
 - Drop oldthemes and unofficial themes at upstream's request, after
