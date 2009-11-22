@@ -43,6 +43,7 @@ Release: 2%{?dist}
 # Tarballs created from svn directories, should be formal tarballs after release
 #Source0:        http://www.mythtv.org/mc/mythtv-themes-%{version}.tar.bz2
 Source0:        myththemes-%{version}.tar.bz2
+Patch0:         myththemes-0.22-svnfixes.patch
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -74,6 +75,9 @@ This package contains additional themes for the mythtv user interface.
 
 %prep
 %setup -q -c
+cd myththemes-%{version}
+%patch0 -p1
+cd ..
 
 ################################################################################
 
