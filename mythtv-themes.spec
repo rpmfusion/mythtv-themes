@@ -17,7 +17,7 @@
 %define desktop_vendor  RPMFusion
 
 # SVN Revision number and branch ID
-%define _svnrev r22752
+%define _svnrev r22880
 %define branch release
 
 #
@@ -35,7 +35,7 @@ Version: 0.22
 Release: 0.1.rc2%{?dist}
 #Release: 0.5.svn.%{_svnrev}%{?dist}
 %else
-Release: 1%{?dist}
+Release: 2%{?dist}
 %endif
 
 ################################################################################
@@ -103,6 +103,9 @@ rm -rf %{buildroot}
 %{_datadir}/mythtv/themes/*
 
 %changelog
+* Sat Nov 21 2009 Jarod Wilson <jarod@wilsonet.com> 0.22-2
+- Update to release-0-22-fixes branch, svn revision 22880
+
 * Mon Nov 09 2009 Jarod Wilson <jarod@wilsonet.com> 0.22-1
 - Update to 0.22 release
 
