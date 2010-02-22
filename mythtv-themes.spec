@@ -17,8 +17,8 @@
 %define desktop_vendor  RPMFusion
 
 # SVN Revision number and branch ID
-%define _svnrev r22752
-%define branch release
+%define _svnrev r23586
+%define branch trunk
 
 #
 # Basic descriptive tags for this package:
@@ -30,10 +30,10 @@ Group:      Applications/Multimedia
 License:    GPLv2
 
 # Version/Release info
-Version: 0.22
+Version: 0.23
 %if "%{branch}" == "trunk"
-Release: 0.1.rc2%{?dist}
-#Release: 0.5.svn.%{_svnrev}%{?dist}
+#Release: 0.1.rc2%{?dist}
+Release: 0.1.svn.%{_svnrev}%{?dist}
 %else
 Release: 1%{?dist}
 %endif
@@ -50,7 +50,7 @@ BuildArch:      noarch
 
 ################################################################################
 
-BuildRequires:  libmyth-devel = %{version}
+BuildRequires:  mythtv-devel = %{version}
 BuildRequires:  qt4-devel
 
 # Themes do require a frontend
@@ -89,6 +89,10 @@ rm -rf %{buildroot}
 
 cd myththemes-%{version}
 make install INSTALL_ROOT=%{buildroot}
+# move font files to more appropriate locations
+mkdir -p %{buildroot}%{_datadir}/fonts/%{name}
+mv %{buildroot}%{_datadir}/mythtv/themes/Arclight/*.otf \
+	%{buildroot}%{_datadir}/fonts/%{name}/
 cd ..
 
 ################################################################################
@@ -98,11 +102,23 @@ rm -rf %{buildroot}
 
 ################################################################################
 
+%post
+%{_bindir}/fc-cache -f
+
 %files
 %defattr(-,root,root,-)
 %{_datadir}/mythtv/themes/*
+%dir %{_datadir}/fonts/%{name}
+%{_datadir}/fonts/%{name}/*.otf
 
 %changelog
+* Fri Feb 05 2010 Jarod Wilson <jarod@wilsonet.com> 0.23-0.1.svn.r23586
+- Update to pre-0.23 svn trunk, rev 23586
+
+* Fri Feb 05 2010 Jarod Wilson <jarod@wilsonet.com> 0.23-0.1.svn.r23479
+- Update to pre-0.23 svn trunk, rev 23479
+- Add hacky install of Arclight themes, still needs to be done Right
+
 * Mon Nov 09 2009 Jarod Wilson <jarod@wilsonet.com> 0.22-1
 - Update to 0.22 release
 
