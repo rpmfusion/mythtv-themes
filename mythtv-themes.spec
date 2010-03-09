@@ -17,7 +17,7 @@
 %define desktop_vendor  RPMFusion
 
 # SVN Revision number and branch ID
-%define _svnrev r23586
+%define _svnrev r23702
 %define branch trunk
 
 #
@@ -112,6 +112,15 @@ rm -rf %{buildroot}
 %{_datadir}/fonts/%{name}/*.otf
 
 %changelog
+* Tue Mar 09 2010 Jarod Wilson <jarod@wilsonet.com> 0.23-0.1.svn.r23702
+- Update to pre-0.23 svn trunk, rev 23702
+
+* Thu Mar 04 2010 Jarod Wilson <jarod@wilsonet.com> 0.23-0.1.svn.r23662
+- Update to pre-0.23 svn trunk, rev 23662
+
+* Sun Feb 28 2010 Jarod Wilson <jarod@wilsonet.com> 0.23-0.1.svn.r23627
+- Update to pre-0.23 svn trunk, rev 23627
+
 * Fri Feb 05 2010 Jarod Wilson <jarod@wilsonet.com> 0.23-0.1.svn.r23586
 - Update to pre-0.23 svn trunk, rev 23586
 
