@@ -17,7 +17,7 @@
 %define desktop_vendor  RPMFusion
 
 # SVN Revision number and branch ID
-%define _svnrev r23781
+%define _svnrev r23894
 %define branch trunk
 
 #
@@ -33,7 +33,7 @@ License:    GPLv2
 Version: 0.23
 %if "%{branch}" == "trunk"
 #Release: 0.1.svn.%{_svnrev}%{?dist}
-Release: 0.2.rc1%{?dist}
+Release: 0.3.rc1%{?dist}
 %else
 Release: 1%{?dist}
 %endif
@@ -112,6 +112,10 @@ rm -rf %{buildroot}
 %{_datadir}/fonts/%{name}/*.otf
 
 %changelog
+* Thu Apr 01 2010 Jarod Wilson <jarod@wilsonet.com> 0.23-0.3.rc1
+- Update to post-rc1 snapshot
+- Start tracking release-0-23-fixes branch
+
 * Tue Mar 23 2010 Jarod Wilson <jarod@wilsonet.com> 0.23-0.2.rc1
 - Update to svn trunk, revision 23781, aka MythTV 0.23 RC1 (more or less)
 
