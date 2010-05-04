@@ -17,8 +17,8 @@
 %define desktop_vendor  RPMFusion
 
 # SVN Revision number and branch ID
-%define _svnrev r22880
-%define branch release
+%define _svnrev r24414
+%define branch trunk
 
 #
 # Basic descriptive tags for this package:
@@ -30,12 +30,12 @@ Group:      Applications/Multimedia
 License:    GPLv2
 
 # Version/Release info
-Version: 0.22
+Version: 0.23
 %if "%{branch}" == "trunk"
-Release: 0.1.rc2%{?dist}
-#Release: 0.5.svn.%{_svnrev}%{?dist}
+#Release: 0.1.svn.%{_svnrev}%{?dist}
+Release: 0.6.rc3%{?dist}
 %else
-Release: 2%{?dist}
+Release: 1%{?dist}
 %endif
 
 ################################################################################
@@ -43,7 +43,6 @@ Release: 2%{?dist}
 # Tarballs created from svn directories, should be formal tarballs after release
 #Source0:        http://www.mythtv.org/mc/mythtv-themes-%{version}.tar.bz2
 Source0:        myththemes-%{version}.tar.bz2
-Patch0:         myththemes-0.22-svnfixes.patch
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -51,7 +50,7 @@ BuildArch:      noarch
 
 ################################################################################
 
-BuildRequires:  libmyth-devel = %{version}
+BuildRequires:  mythtv-devel = %{version}
 BuildRequires:  qt4-devel
 
 # Themes do require a frontend
@@ -75,9 +74,6 @@ This package contains additional themes for the mythtv user interface.
 
 %prep
 %setup -q -c
-cd myththemes-%{version}
-%patch0 -p1
-cd ..
 
 ################################################################################
 
@@ -93,6 +89,10 @@ rm -rf %{buildroot}
 
 cd myththemes-%{version}
 make install INSTALL_ROOT=%{buildroot}
+# move font files to more appropriate locations
+mkdir -p %{buildroot}%{_datadir}/fonts/%{name}
+mv %{buildroot}%{_datadir}/mythtv/themes/Arclight/*.otf \
+	%{buildroot}%{_datadir}/fonts/%{name}/
 cd ..
 
 ################################################################################
@@ -102,13 +102,48 @@ rm -rf %{buildroot}
 
 ################################################################################
 
+%post
+%{_bindir}/fc-cache -f
+
 %files
 %defattr(-,root,root,-)
 %{_datadir}/mythtv/themes/*
+%dir %{_datadir}/fonts/%{name}
+%{_datadir}/fonts/%{name}/*.otf
 
 %changelog
-* Sat Nov 21 2009 Jarod Wilson <jarod@wilsonet.com> 0.22-2
-- Update to release-0-22-fixes branch, svn revision 22880
+* Tue May 04 2010 Jarod Wilson <jarod@wilsonet.com> 0.23-0.6.rc3
+- Update to post-rc3 svn snapshot, revision 24414
+- Includes addition of theming contest winner "Childish"
+
+* Fri Apr 16 2010 Jarod Wilson <jarod@wilsonet.com> 0.23-0.5.rc2
+- Update to post-rc2 svn snapshot, revision 24159
+
+* Tue Apr 06 2010 Jarod Wilson <jarod@wilsonet.com> 0.23-0.4.rc2
+- Update to post-rc2 svn snapshot, revision 24014
+
+* Thu Apr 01 2010 Jarod Wilson <jarod@wilsonet.com> 0.23-0.3.rc1
+- Update to post-rc1 snapshot
+- Start tracking release-0-23-fixes branch
+
+* Tue Mar 23 2010 Jarod Wilson <jarod@wilsonet.com> 0.23-0.2.rc1
+- Update to svn trunk, revision 23781, aka MythTV 0.23 RC1 (more or less)
+
+* Tue Mar 09 2010 Jarod Wilson <jarod@wilsonet.com> 0.23-0.1.svn.r23702
+- Update to pre-0.23 svn trunk, rev 23702
+
+* Thu Mar 04 2010 Jarod Wilson <jarod@wilsonet.com> 0.23-0.1.svn.r23662
+- Update to pre-0.23 svn trunk, rev 23662
+
+* Sun Feb 28 2010 Jarod Wilson <jarod@wilsonet.com> 0.23-0.1.svn.r23627
+- Update to pre-0.23 svn trunk, rev 23627
+
+* Fri Feb 05 2010 Jarod Wilson <jarod@wilsonet.com> 0.23-0.1.svn.r23586
+- Update to pre-0.23 svn trunk, rev 23586
+
+* Fri Feb 05 2010 Jarod Wilson <jarod@wilsonet.com> 0.23-0.1.svn.r23479
+- Update to pre-0.23 svn trunk, rev 23479
+- Add hacky install of Arclight themes, still needs to be done Right
 
 * Mon Nov 09 2009 Jarod Wilson <jarod@wilsonet.com> 0.22-1
 - Update to 0.22 release
