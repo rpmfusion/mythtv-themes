@@ -17,7 +17,7 @@
 %define desktop_vendor  RPMFusion
 
 # SVN Revision number and branch ID
-%define _svnrev r24414
+%define _svnrev r24473
 %define branch trunk
 
 #
@@ -33,7 +33,7 @@ License:    GPLv2
 Version: 0.23
 %if "%{branch}" == "trunk"
 #Release: 0.1.svn.%{_svnrev}%{?dist}
-Release: 0.6.rc3%{?dist}
+Release: 0.7.rc3%{?dist}
 %else
 Release: 1%{?dist}
 %endif
@@ -112,6 +112,9 @@ rm -rf %{buildroot}
 %{_datadir}/fonts/%{name}/*.otf
 
 %changelog
+* Fri May 07 2010 Jarod Wilson <jarod@wilsonet.com> 0.23-0.7.rc3
+- Update to post-rc3 svn snapshot, revision 24473
+
 * Tue May 04 2010 Jarod Wilson <jarod@wilsonet.com> 0.23-0.6.rc3
 - Update to post-rc3 svn snapshot, revision 24414
 - Includes addition of theming contest winner "Childish"
