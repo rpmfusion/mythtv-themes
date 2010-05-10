@@ -17,8 +17,8 @@
 %define desktop_vendor  RPMFusion
 
 # SVN Revision number and branch ID
-%define _svnrev r24473
-%define branch trunk
+%define _svnrev r24509
+%define branch release-0-23-fixes
 
 #
 # Basic descriptive tags for this package:
@@ -32,8 +32,7 @@ License:    GPLv2
 # Version/Release info
 Version: 0.23
 %if "%{branch}" == "trunk"
-#Release: 0.1.svn.%{_svnrev}%{?dist}
-Release: 0.7.rc3%{?dist}
+Release: 0.1.svn.%{_svnrev}%{?dist}
 %else
 Release: 1%{?dist}
 %endif
@@ -112,6 +111,9 @@ rm -rf %{buildroot}
 %{_datadir}/fonts/%{name}/*.otf
 
 %changelog
+* Mon May 10 2010 Jarod Wilson <jarod@wilsonet.com> 0.23-1
+- Update to 0.23 release (svn rev 24509)
+
 * Fri May 07 2010 Jarod Wilson <jarod@wilsonet.com> 0.23-0.7.rc3
 - Update to post-rc3 svn snapshot, revision 24473
 
