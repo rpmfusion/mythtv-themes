@@ -46,6 +46,7 @@ Source0:        myththemes-%{version}.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildArch:      noarch
+ExcludeArch:    ppc64
 
 ################################################################################
 
