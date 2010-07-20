@@ -34,14 +34,19 @@ Version: 0.23
 %if "%{branch}" == "trunk"
 Release: 0.1.svn.%{_svnrev}%{?dist}
 %else
-Release: 1%{?dist}
+Release: 2%{?dist}
 %endif
 
 ################################################################################
 
 # Tarballs created from svn directories, should be formal tarballs after release
-#Source0:        http://www.mythtv.org/mc/mythtv-themes-%{version}.tar.bz2
-Source0:        myththemes-%{version}.tar.bz2
+# Source0 is http://www.mythtv.org/download/themes/0.23, which redirects to
+# the primary download mirror at osuosl.rg
+Source0:        ftp://ftp.osuosl.org/pub/mythtv/myththemes-%{version}.tar.bz2
+# Robert Siebert's user-contributed theme, included at his (and users') request
+Source1:	ftp://miroku.no-ip.com/blue-abstract-wide.2010.07.15.tar.bz2
+# svnfixes branch patch
+Patch0:		myththemes-0.23-svnfixes.patch
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -72,7 +77,10 @@ This package contains additional themes for the mythtv user interface.
 ################################################################################
 
 %prep
-%setup -q -c
+%setup -q -c -a 1
+cd myththemes-%{version}
+%patch0 -p1
+cd ..
 
 ################################################################################
 
@@ -94,6 +102,8 @@ mv %{buildroot}%{_datadir}/mythtv/themes/Arclight/*.otf \
 	%{buildroot}%{_datadir}/fonts/%{name}/
 cd ..
 
+cp -a blue-abstract-wide %{buildroot}%{_datadir}/mythtv/themes/
+
 ################################################################################
 
 %clean
@@ -111,6 +121,10 @@ rm -rf %{buildroot}
 %{_datadir}/fonts/%{name}/*.otf
 
 %changelog
+* Tue Jul 20 2010 Jarod Wilson <jarod@wilsonet.com> 0.23-2
+- Update to 0-23-release-fixes at svn revision 25830
+- Include user-contributed blue-abstract-wide theme, 2010.07.15 edition
+
 * Mon May 10 2010 Jarod Wilson <jarod@wilsonet.com> 0.23-1
 - Update to 0.23 release (svn rev 24509)
 
