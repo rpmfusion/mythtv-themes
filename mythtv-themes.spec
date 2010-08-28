@@ -46,7 +46,7 @@ Source0:        ftp://ftp.osuosl.org/pub/mythtv/myththemes-%{version}.tar.bz2
 # Robert Siebert's user-contributed theme, included at his (and users') request
 Source1:	ftp://miroku.no-ip.com/blue-abstract-wide.2010.07.15.tar.bz2
 # svnfixes branch patch
-Patch0:		myththemes-0.23-svnfixes.patch
+#Patch0:		myththemes-0.23-svnfixes.patch
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
