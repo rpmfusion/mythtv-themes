@@ -17,7 +17,7 @@
 %define desktop_vendor  RPMFusion
 
 # SVN Revision number and branch ID
-%define _svnrev r23702
+%define _svnrev r26065
 %define branch trunk
 
 #
@@ -30,9 +30,8 @@ Group:      Applications/Multimedia
 License:    GPLv2
 
 # Version/Release info
-Version: 0.23
+Version: 0.24
 %if "%{branch}" == "trunk"
-#Release: 0.1.rc2%{?dist}
 Release: 0.1.svn.%{_svnrev}%{?dist}
 %else
 Release: 1%{?dist}
@@ -41,8 +40,13 @@ Release: 1%{?dist}
 ################################################################################
 
 # Tarballs created from svn directories, should be formal tarballs after release
-#Source0:        http://www.mythtv.org/mc/mythtv-themes-%{version}.tar.bz2
-Source0:        myththemes-%{version}.tar.bz2
+# Source0 is http://www.mythtv.org/download/themes/0.23, which redirects to
+# the primary download mirror at osuosl.rg
+Source0:        ftp://ftp.osuosl.org/pub/mythtv/myththemes-%{version}.tar.bz2
+# Robert Siebert's user-contributed theme, included at his (and users') request
+Source1:	ftp://miroku.no-ip.com/blue-abstract-wide.2010.07.15.tar.bz2
+# svnfixes branch patch
+#Patch0:		myththemes-0.23-svnfixes.patch
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -73,7 +77,11 @@ This package contains additional themes for the mythtv user interface.
 ################################################################################
 
 %prep
-%setup -q -c
+%setup -q -c -a 1
+cd myththemes-%{version}
+# Patch is currently empty after 0.23.1 rebase
+#patch0 -p1
+cd ..
 
 ################################################################################
 
@@ -95,6 +103,8 @@ mv %{buildroot}%{_datadir}/mythtv/themes/Arclight/*.otf \
 	%{buildroot}%{_datadir}/fonts/%{name}/
 cd ..
 
+cp -a blue-abstract-wide %{buildroot}%{_datadir}/mythtv/themes/
+
 ################################################################################
 
 %clean
@@ -112,6 +122,39 @@ rm -rf %{buildroot}
 %{_datadir}/fonts/%{name}/*.otf
 
 %changelog
+* Wed Sep 01 2010 Jarod Wilson <jarod@wilsonet.com> 0.24-0.1.svn.r26065
+- Update to svn trunk, rev 26065
+
+* Sat Aug 28 2010 Jarod Wilson <jarod@wilsonet.com> 0.23.1-1
+- Update to 0.23.1 + svnfixes at revision 25902
+
+* Tue Jul 20 2010 Jarod Wilson <jarod@wilsonet.com> 0.23-2
+- Update to 0-23-release-fixes at svn revision 25830
+- Include user-contributed blue-abstract-wide theme, 2010.07.15 edition
+
+* Mon May 10 2010 Jarod Wilson <jarod@wilsonet.com> 0.23-1
+- Update to 0.23 release (svn rev 24509)
+
+* Fri May 07 2010 Jarod Wilson <jarod@wilsonet.com> 0.23-0.7.rc3
+- Update to post-rc3 svn snapshot, revision 24473
+
+* Tue May 04 2010 Jarod Wilson <jarod@wilsonet.com> 0.23-0.6.rc3
+- Update to post-rc3 svn snapshot, revision 24414
+- Includes addition of theming contest winner "Childish"
+
+* Fri Apr 16 2010 Jarod Wilson <jarod@wilsonet.com> 0.23-0.5.rc2
+- Update to post-rc2 svn snapshot, revision 24159
+
+* Tue Apr 06 2010 Jarod Wilson <jarod@wilsonet.com> 0.23-0.4.rc2
+- Update to post-rc2 svn snapshot, revision 24014
+
+* Thu Apr 01 2010 Jarod Wilson <jarod@wilsonet.com> 0.23-0.3.rc1
+- Update to post-rc1 snapshot
+- Start tracking release-0-23-fixes branch
+
+* Tue Mar 23 2010 Jarod Wilson <jarod@wilsonet.com> 0.23-0.2.rc1
+- Update to svn trunk, revision 23781, aka MythTV 0.23 RC1 (more or less)
+
 * Tue Mar 09 2010 Jarod Wilson <jarod@wilsonet.com> 0.23-0.1.svn.r23702
 - Update to pre-0.23 svn trunk, rev 23702
 
