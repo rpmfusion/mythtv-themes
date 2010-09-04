@@ -17,7 +17,7 @@
 %define desktop_vendor  RPMFusion
 
 # SVN Revision number and branch ID
-%define _svnrev r24509
+%define _svnrev r25902
 %define branch release-0-23-fixes
 
 #
@@ -30,11 +30,11 @@ Group:      Applications/Multimedia
 License:    GPLv2
 
 # Version/Release info
-Version: 0.23
+Version: 0.23.1
 %if "%{branch}" == "trunk"
 Release: 0.1.svn.%{_svnrev}%{?dist}
 %else
-Release: 2%{?dist}
+Release: 1%{?dist}
 %endif
 
 ################################################################################
@@ -46,7 +46,7 @@ Source0:        ftp://ftp.osuosl.org/pub/mythtv/myththemes-%{version}.tar.bz2
 # Robert Siebert's user-contributed theme, included at his (and users') request
 Source1:	ftp://miroku.no-ip.com/blue-abstract-wide.2010.07.15.tar.bz2
 # svnfixes branch patch
-Patch0:		myththemes-0.23-svnfixes.patch
+#Patch0:		myththemes-0.23-svnfixes.patch
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -79,7 +79,8 @@ This package contains additional themes for the mythtv user interface.
 %prep
 %setup -q -c -a 1
 cd myththemes-%{version}
-%patch0 -p1
+# Patch is currently empty after 0.23.1 rebase
+#patch0 -p1
 cd ..
 
 ################################################################################
@@ -121,6 +122,9 @@ rm -rf %{buildroot}
 %{_datadir}/fonts/%{name}/*.otf
 
 %changelog
+* Sat Aug 28 2010 Jarod Wilson <jarod@wilsonet.com> 0.23.1-1
+- Update to 0.23.1 + svnfixes at revision 25902
+
 * Tue Jul 20 2010 Jarod Wilson <jarod@wilsonet.com> 0.23-2
 - Update to 0-23-release-fixes at svn revision 25830
 - Include user-contributed blue-abstract-wide theme, 2010.07.15 edition
