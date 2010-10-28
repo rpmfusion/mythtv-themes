@@ -17,7 +17,7 @@
 %define desktop_vendor  RPMFusion
 
 # SVN Revision number and branch ID
-%define _svnrev r26065
+%define _svnrev r26998
 %define branch trunk
 
 #
@@ -32,7 +32,8 @@ License:    GPLv2
 # Version/Release info
 Version: 0.24
 %if "%{branch}" == "trunk"
-Release: 0.1.svn.%{_svnrev}%{?dist}
+#Release: 0.1.svn.%{_svnrev}%{?dist}
+Release: 0.2.rc1%{?dist}
 %else
 Release: 1%{?dist}
 %endif
@@ -122,6 +123,9 @@ rm -rf %{buildroot}
 %{_datadir}/fonts/%{name}/*.otf
 
 %changelog
+* Wed Oct 27 2010 Jarod Wilson <jarod@wilsonet.com> 0.24-0.2.rc1
+- Update to svn trunk, revision 26998 (which is actually post-0.24-rc1)
+
 * Wed Sep 01 2010 Jarod Wilson <jarod@wilsonet.com> 0.24-0.1.svn.r26065
 - Update to svn trunk, rev 26065
 
