@@ -1,0 +1,217 @@
+diff -Naurp myththemes-0.24.orig/Arclight/status-ui.xml myththemes-0.24.fixes/Arclight/status-ui.xml
+--- myththemes-0.24.orig/Arclight/status-ui.xml	2010-09-23 05:47:16.000000000 -0400
++++ myththemes-0.24.fixes/Arclight/status-ui.xml	2011-03-01 23:53:44.000000000 -0500
+@@ -65,7 +65,7 @@
+         </textarea>
+ 
+         <buttonlist name="category" from="baseshapebuttonlist">
+-            <area>0,669,100%,360</area>
++            <position>0,669</position>
+             <spacing>0</spacing>
+             <scrollstyle>free</scrollstyle>
+             <wrapstyle>items</wrapstyle>
+diff -Naurp myththemes-0.24.orig/.gitignore myththemes-0.24.fixes/.gitignore
+--- myththemes-0.24.orig/.gitignore	1969-12-31 19:00:00.000000000 -0500
++++ myththemes-0.24.fixes/.gitignore	2011-03-01 23:53:44.000000000 -0500
+@@ -0,0 +1,5 @@
++Makefile
++dummy.o
++mythconfig.mak
++myththemes
++
+diff -Naurp myththemes-0.24.orig/metallurgy/menu-ui.xml myththemes-0.24.fixes/metallurgy/menu-ui.xml
+--- myththemes-0.24.orig/metallurgy/menu-ui.xml	2010-10-12 15:44:18.000000000 -0400
++++ myththemes-0.24.fixes/metallurgy/menu-ui.xml	2011-03-01 23:53:44.000000000 -0500
+@@ -135,6 +135,31 @@
+                     <value>Search Lists</value>
+                 </textarea>
+             </state>
++            <state name="TV">
++                <textarea name="title" from="baseheading">
++                    <value>TV</value>
++                </textarea>
++            </state>
++            <state name="VIDEO">
++                <textarea name="title" from="baseheading">
++                    <value>Videos</value>
++                </textarea>
++            </state>
++            <state name="NETVISION">
++                <textarea name="title" from="baseheading">
++                    <value>Internet Video</value>
++                </textarea>
++            </state>
++            <state name="ARCHIVEUTILS">
++                <textarea name="title" from="baseheading">
++                    <value>Archive Utilities</value>
++                </textarea>
++            </state>
++            <state name="SETUP_TVRECPRIORITIES">
++                <textarea name="title" from="baseheading">
++                    <value>Recording Priorities</value>
++                </textarea>
++            </state>
+         </statetype>
+ 
+         <buttonlist name="menu">
+diff -Naurp myththemes-0.24.orig/metallurgy/osd.xml myththemes-0.24.fixes/metallurgy/osd.xml
+--- myththemes-0.24.orig/metallurgy/osd.xml	2010-11-04 09:54:31.000000000 -0400
++++ myththemes-0.24.fixes/metallurgy/osd.xml	2011-03-01 23:53:44.000000000 -0500
+@@ -65,40 +65,40 @@
+         <area>0,480,1280,240</area>
+ 
+         <imagetype name="background">
+-            <area>0,480,1280,240</area>
++            <area>0,0,1280,240</area>
+             <filename>osd/background.png</filename>
+         </imagetype>
+ 
+         <textarea name="title">
+-            <area>185,510,830,38</area>
++            <area>185,30,830,38</area>
+             <font>extralarge</font>
+         </textarea>
+ 
+         <textarea name="description">
+             <multiline>yes</multiline>
+-            <area>185,585,1054,130</area>
++            <area>185,105,1054,130</area>
+             <font>medium</font>
+             <template>%"|SUBTITLE|" %%DESCRIPTION%</template>
+         </textarea>
+ 
+         <textarea name="starttime">
+-            <area>185,551,880,25</area>
++            <area>185,71,880,25</area>
+             <font>smallgrey</font>
+             <template>(%STARTTIME% - %ENDTIME%) %LENMINS%</template>
+         </textarea>
+ 
+         <imagetype name="channelicon">
+-            <area>46,520,120,90</area>
++            <area>46,40,120,90</area>
+         </imagetype>
+ 
+         <textarea name="time">
+-            <area>1034,510,200,40</area>
++            <area>1034,30,200,40</area>
+             <font>medium</font>
+             <align>right</align>
+         </textarea>
+ 
+         <textarea name="channum">
+-            <area>46,635,120,30</area>
++            <area>46,155,120,30</area>
+             <font>extralarge</font>
+             <align>hcenter</align>
+         </textarea>
+diff -Naurp myththemes-0.24.orig/metallurgy/themeinfo.xml myththemes-0.24.fixes/metallurgy/themeinfo.xml
+--- myththemes-0.24.orig/metallurgy/themeinfo.xml	2010-08-28 16:16:22.000000000 -0400
++++ myththemes-0.24.fixes/metallurgy/themeinfo.xml	2011-03-01 23:53:44.000000000 -0500
+@@ -17,7 +17,7 @@
+ 
+     <version>
+         <major>1</major>
+-        <minor>1</minor>
++        <minor>2</minor>
+     </version>
+ 
+     <detail>
+diff -Naurp myththemes-0.24.orig/Mythbuntu/base.xml myththemes-0.24.fixes/Mythbuntu/base.xml
+--- myththemes-0.24.orig/Mythbuntu/base.xml	2010-10-06 21:34:10.000000000 -0400
++++ myththemes-0.24.fixes/Mythbuntu/base.xml	2011-03-01 23:53:44.000000000 -0500
+@@ -123,22 +123,23 @@
+         <spacing>5</spacing>
+         <buttonarea>0,0,100%,97%</buttonarea>
+         <statetype name="buttonitem">
++            <area>0,0,100%,30</area>
+             <state name="active">
+                 <area>0,0,100%,30</area>
+-	        <shape name="buttonbackground">
+-	            <type>roundbox</type>
+-	            <area>0,0,99%,30</area>
+-		    <fill color="#666666" alpha="50" />
+-		    <cornerradius>15</cornerradius>
+-	        </shape>
++                <shape name="buttonbackground">
++                    <type>roundbox</type>
++                    <area>0,0,100%,30</area>
++                    <fill color="#666666" alpha="50" />
++                    <cornerradius>15</cornerradius>
++                </shape>
+                 <textarea name="buttontext">
+-                    <area>16,0,85%,31</area>
++                    <area>16,0,94%,31</area>
+                     <font>basesmallgrey</font>
+                     <cutdown>yes</cutdown>
+                     <align>left,vcenter</align>
+                 </textarea>
+                 <statetype name="buttoncheck">
+-                    <position>91%,5</position>
++                    <position>94%,5</position>
+                     <state type="off">
+                         <imagetype name="checkoff">
+                             <filename>shared/lb-check-empty.png</filename>
+@@ -161,23 +162,23 @@
+                 </imagetype>
+             </state>
+             <state name="selectedactive" from="active">
+-	        <shape name="buttonbackground">
+-	            <type>roundbox</type>
+-	            <area>0,0,99%,30</area>
+-	            <fill color="#ffffff" alpha="50" />
+-	            <cornerradius>15</cornerradius>
+-	        </shape>
++                <shape name="buttonbackground">
++                    <type>roundbox</type>
++                    <area>0,0,100%,30</area>
++                    <fill color="#ffffff" alpha="50" />
++                    <cornerradius>15</cornerradius>
++                </shape>
+                 <textarea name="buttontext">
+                     <font>basesmall</font>
+                 </textarea>
+             </state>
+             <state name="selectedinactive" from="active">
+-	        <shape name="buttonbackground">
+-	            <type>roundbox</type>
+-        	    <area>0,0,99%,30</area>
+-	            <fill color="#ffffff" alpha="50" />
+-	            <cornerradius>15</cornerradius>
+-	        </shape>
++            <shape name="buttonbackground">
++                <type>roundbox</type>
++                <area>0,0,100%,30</area>
++                <fill color="#ffffff" alpha="50" />
++                <cornerradius>15</cornerradius>
++            </shape>
+                 <textarea name="buttontext">
+                     <font>basesmallgrey</font>
+                 </textarea>
+diff -Naurp myththemes-0.24.orig/Mythbuntu/config-ui.xml myththemes-0.24.fixes/Mythbuntu/config-ui.xml
+--- myththemes-0.24.orig/Mythbuntu/config-ui.xml	2010-08-28 16:16:22.000000000 -0400
++++ myththemes-0.24.fixes/Mythbuntu/config-ui.xml	2011-03-01 23:53:44.000000000 -0500
+@@ -70,7 +70,7 @@
+         </buttonlist>
+ 
+         <button name="delete" from="basebutton">
+-            <position>620,472</position>
++            <position>750,472</position>
+             <value>Delete</value>
+         </button>
+ 
+@@ -89,12 +89,12 @@
+         </button>
+ 
+         <button name="importicons" from="basewidebutton">
+-            <position>325,585</position>
++            <position>375,585</position>
+             <value>Icon Download</value>
+         </button>
+ 
+         <button name="edittransport" from="basewidebutton">
+-            <position>585,585</position>
++            <position>700,585</position>
+             <value>Edit Transports</value>
+         </button>
+ 
