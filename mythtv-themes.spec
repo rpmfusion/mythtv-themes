@@ -18,7 +18,7 @@
 
 # Git revision and branch ID
 # 0.24 release: git tag b0.24
-%define _gitrev 945c67317
+%define _gitrev 931028f491
 %define branch fixes/0.24
 
 #
@@ -36,7 +36,7 @@ Version: 0.24
 Release: 0.1.git.%{_gitrev}%{?dist}
 #Release: 0.1.rc1%{?dist}
 %else
-Release: 2%{?dist}
+Release: 3%{?dist}
 %endif
 
 ################################################################################
@@ -123,6 +123,9 @@ rm -rf %{buildroot}
 %{_datadir}/fonts/%{name}/*.otf
 
 %changelog
+* Thu Mar 24 2011 Jarod Wilson <jarod@wilsonet.com> 0.24-3
+- Update to 0.24 fixes, git revision 931028f491
+
 * Sun Jan 16 2011 Jarod Wilson <jarod@wilsonet.com> 0.24-2
 - Update to 0.24 fixes, git revision 945c67317
 
