@@ -56,7 +56,7 @@ BuildArch:      noarch
 
 ################################################################################
 
-BuildRequires:  mythtv-devel = %{version}
+BuildRequires:  mythtv-devel = %{version}.1
 BuildRequires:  qt4-devel
 
 # Themes do require a frontend
