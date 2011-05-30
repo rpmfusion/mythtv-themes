@@ -36,7 +36,7 @@ Version: 0.24
 Release: 0.1.git.%{_gitrev}%{?dist}
 #Release: 0.1.rc1%{?dist}
 %else
-Release: 4%{?dist}
+Release: 5%{?dist}
 %endif
 
 ################################################################################
@@ -63,7 +63,7 @@ BuildRequires:  qt4-devel
 Requires:       mythtv-frontend
 
 # With the mythtv 0.24.1 point release, there was no updated themes tarball
-Provides:       %{name}-%{version}.1
+Provides:       %{name} = %{version}.1
 
 # And obselete a bunch of packages from when themes were packaged individually
 Obsoletes:      mythtv-theme-MythCenter
@@ -126,6 +126,9 @@ rm -rf %{buildroot}
 %{_datadir}/fonts/%{name}/*.otf
 
 %changelog
+* Mon May 30 2011 Jarod Wilson <jarod@wilsonet.com> 0.24-5
+- Fix the prior fix, Provides: mythtv-themes =, not mythtv-themes-
+
 * Sat May 28 2011 Jarod Wilson <jarod@wilsonet.com> 0.24-4
 - Add Provides for 0.24.1, since there's no new themes tarball (#1766)
 
